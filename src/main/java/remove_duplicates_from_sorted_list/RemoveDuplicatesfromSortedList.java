@@ -6,18 +6,13 @@ public class RemoveDuplicatesfromSortedList {
 
     public class Solution {
         public ListNode deleteDuplicates(ListNode head) {
-            if (head != null) {
-                ListNode pre = head;
-                ListNode p = pre.next;
-                while (p != null) {
-                    if (p.val == pre.val) {
-                        pre.next = p.next;
-                    } else {
-                        pre = p;
-                    }
-                    p = p.next;
-                }
+            if(head == null || head.next == null){
+                return head;
             }
+            while(head.next!=null && head.val == head.next.val){
+                head.next = head.next.next;
+            }
+            head.next = deleteDuplicates(head.next);
             return head;
         }
     }
